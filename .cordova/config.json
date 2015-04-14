@@ -1,0 +1,11 @@
+{
+    "lib": {
+        "www": {
+            "id": "com.phonegap.isc-hs-community-angular",
+            "version": "master",
+//            "uri": "https://github.com/phonegap/isc-hc-phonegap/archive/master.tar.gz",
+            "uri": "https://github.com/intersystems/isc-hscommunity-angular/archive/master.tar.gz",
+            "link": false
+        }
+    }
+}

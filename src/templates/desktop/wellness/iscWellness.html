@@ -1,0 +1,16 @@
+<div class="isc-page">
+
+	<h1>{{ 'ISC_WELLNESS_TITLE' | translate }}</h1>
+
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-6 col-md-3"
+         ng-repeat="item in wellCtrl.wellnessTiles" >
+
+			<div isc-wellness-tile-directive data="item"></div>
+
+
+		</div>
+	</div>
+
+</div>

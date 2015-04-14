@@ -1,0 +1,255 @@
+
+
+
+<div class="isc-content">
+  <div class="isc-page">
+    <h1>{{ 'ISC_HOME_TITLE' | translate }}</h1>
+    <button class="isc-btn-primary" ng-click="homeCtrl.dispatchEvent()">Event</button>
+
+    <!--logged in-->
+    <div ng-if="homeCtrl.sessionModel.isAuthenticated()">
+
+      <div class="table-responsive only-desktop">
+        <table class="table table-condensed">
+
+          <h3><strong>{{homeCtrl.patientData.Patient.Name}}</strong></h3>
+
+          <tr>
+            <td>
+              <img src="assets/images/demo/avatar/john.png"
+                   alt=""
+                   class="pull-left img-circle"
+                   style="margin: 0 20px 20px 0">
+            </td>
+            <td>
+              <table>
+                <tr>
+                  <td>{{'ISC_PHONE' | translate}}</td>
+                  <td>{{homeCtrl.patientData.Patient.MobilePhone}}</td>
+                </tr>
+                <tr>
+                  <td>{{'ISC_EMAIL' | translate}}</td>
+                  <td><a href="">{{homeCtrl.patientData.Patient.Email}}</a></td>
+                </tr>
+                <tr>
+                  <td>{{'ISC_PRIMARY_CARE' | translate}}</td>
+
+                  <!--TODO where does this data come from???-->
+                  <td>Dr. Dave David</td>
+                </tr>
+                </td>
+              </table>
+
+          </tr>
+
+
+        </table>
+
+      </div>
+
+
+
+
+      <div class="table-responsive only-mobile">
+        <table class="table table-condensed">
+
+
+          <h3><strong>{{homeCtrl.patientData.Patient.Name}}</strong></h3>
+          <tbody>
+
+          <tr>
+            <td>
+              <img src="assets/images/demo/avatar/john.png"
+                   alt=""
+                   class="pull-left img-circle"
+                   style="margin: 0 20px 20px 0">
+            </td>
+
+          <tr>
+            <td>{{'ISC_PHONE' | translate}}</td>
+            <td>{{homeCtrl.patientData.Patient.MobilePhone}}</td>
+          </tr>
+          <tr>
+            <td>{{'ISC_EMAIL' | translate}}</td>
+            <td><a href="">{{homeCtrl.patientData.Patient.Email}}</a></td>
+          </tr>
+          <tr>
+            <td>{{'ISC_PRIMARY_CARE' | translate}}</td>
+
+            <!--TODO where does this data come from???-->
+            <td>Dr. Dave David</td>
+          </tr>
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+      <div class="isc-three-column" style="clear:both">
+        <div class="isc-div-tile">
+
+          <div class="isc-tile-content">
+            <h1>Messages</h1>
+
+
+
+            <ul>
+              <li>
+
+                <div  class="isc-tile-content-item-title" ng-if="homeCtrl.panelData.messageCount=='0'">
+                  You have no messages.
+                </div>
+
+                <div  class="isc-tile-content-item-title" ng-if="!homeCtrl.panelData.messageCount=='0'">
+                  You have new messages.
+                </div>
+
+                <div ng-if="!homeCtrl.panelData.messageCount=='0'"
+                     class="isc-tile-content-item-text">You have {{homeCtrl.panelData.messageCount}} message(s).
+                  Click on the "all" link next to Messages to go to your inbox.</div>
+
+              </li>
+
+
+
+            </ul>
+          </div>
+
+        </div>
+
+
+
+
+
+        <div class="isc-div-tile">
+
+          <div class="isc-tile-content">
+            <h1>Events</h1>
+
+
+            <ul>
+              <li ng-repeat="event in homeCtrl.panelData.events">
+
+
+                <div class="isc-tile-content-item-title">{{event.event}}</div>
+                <div class="isc-tile-content-item-text">{{event.description}}</div>
+                <div class="isc-tile-content-item-text">{{event.date}}</div>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="isc-div-tile">
+
+          <div class="isc-tile-content">
+            <h1>News</h1>
+
+            <ul>
+              <li ng-repeat="news in homeCtrl.panelData.news">
+
+
+                <div class="isc-tile-content-item-title">{{news.headline}}</div>
+                <div class="isc-tile-content-item-text">{{news.subhead}}</div>
+                <div class="isc-tile-content-item-text"><a href="{{news.url}}" target="_blank">More</a></div>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!--not logged in-->
+    <div ng-if="!homeCtrl.sessionModel.isAuthenticated()">
+
+      <img src="assets/images/demo/avatar/homePage.jpg"
+           alt=""
+           ng-style="{'width': '50%'}"
+           class="pull-left"
+           style="margin: 0 20px 20px 0">
+      <!--div id="fixed-scroll"
+           class="isc-scroll-stick-container"
+           ng-class="{'scroll-stick':homeCtrl.scrollStick}"
+           isc-scroll-detect
+           top-pos-array="[150, 110, 300]"
+           add-class="homeCtrl.setButtonClass( val )">
+
+        <button class="isc-btn-primary"
+                ng-click="homeCtrl.translate()">{{"FOOBAR_BTN" | translate}}</button>
+
+        <button class="isc-btn-primary"
+                ng-click="homeCtrl.openAlert();">{{"show alert" | translate}}</button>
+
+        <button class="isc-btn-primary"
+                ng-click="navCtrl.hideAlertBox()">{{"hide alert" | translate}}</button>
+
+
+      </div-->
+
+      <div class="">
+        <h4>{{'ISC_HOME_CALLOUT_TITLE' | translate}}</h4>
+        <p>{{'ISC_HOME_CALLOUT' | translate}}</p>
+        <!--<p>{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}{{'ISC_HOME_CALLOUT' | translate}}</p>-->
+      </div>
+
+
+      <div class="isc-two-column">
+
+        <div class="isc-div-tile">
+
+          <div class="isc-tile-content">
+            <h1>Events</h1>
+
+
+            <ul>
+              <li ng-repeat="event in homeCtrl.panelData.events">
+
+
+                <div class="isc-tile-content-item-title">{{event.event}}</div>
+                <div class="isc-tile-content-item-text">{{event.description}}</div>
+                <div class="isc-tile-content-item-text">{{event.date}}</div>
+              </li>
+
+
+
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="isc-div-tile">
+
+          <div class="isc-tile-content">
+            <h1>News</h1>
+
+
+            <ul>
+              <li ng-repeat="news in homeCtrl.panelData.news">
+
+
+                <div class="isc-tile-content-item-title">{{news.headline}}</div>
+                <div class="isc-tile-content-item-text">{{news.subhead}}</div>
+                <div class="isc-tile-content-item-text"><a href="{{news.url}}" target="_blank">More</a></div>
+              </li>
+
+
+
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>

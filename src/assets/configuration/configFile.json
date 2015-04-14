@@ -1,0 +1,42 @@
+{
+  "baseUrl": "",
+
+  "noLoginRequired": [
+    "index.*"
+  ],
+
+  "userRoles": [
+  ],
+
+  "statePermissions": {
+  },
+
+  "topTabs": {
+    "index.home": {
+      "state": "index.home",
+      "translationKey": "ISC_HOME_TAB",
+      "displayOrder": 1,
+      "exclude": false
+    },
+
+    "index.allSensors": {
+      "state": "index.allSensors",
+      "translationKey": "ISC_ALL_SENSORS_TAB",
+      "displayOrder": 2,
+      "exclude": false
+    }
+  },
+
+  "loginButton": {
+    "state": "index.login",
+    "translationKey": "ISC_LOGIN_BTN",
+    "displayOrder": 8,
+    "exclude": false
+  },
+
+  "logoutButton": {
+    "translationKey": "ISC_LOGOUT_BTN",
+    "exclude": false
+  }
+
+}
