@@ -30,7 +30,19 @@
     self.showModalBkgrnd = false;
 
     // --------------
+    self.hideAllPopups = function(){
+      self.showModalBkgrnd = false;
+      self.showAlert = false;
+      self.alertShowing = false;
+      self.showSideNav = false;
+      self.showSecondaryNav = false;
+      self.showModalBkgrnd = false;
+    };
+
+    // --------------
     self.showSideNavbar = function(){
+      self.hideAllPopups(); // close any that are already up
+
       self.showSideNav = true;
       self.showModalBkgrnd = true;
     };
@@ -43,6 +55,8 @@
     // --------------
     self.showSecondaryNavbar = function(){
       //$log.debug( 'iscNavigationController.showSecondaryNavbar');
+      self.hideAllPopups(); // close any that are already up
+
       self.showSecondaryNav = true;
       self.showModalBkgrnd = true;
     };
@@ -56,7 +70,7 @@
 
     // --------------
     self.showAlertBox = function(){
-      self.hideAlertBox(); // close any that are already up
+      self.hideAllPopups(); // close any that are already up
 
       self.showAlert = true;
       self.showModalBkgrnd = true;
@@ -71,6 +85,8 @@
 
     // --------------
     self.showSortOptions = function(){
+      self.hideAllPopups(); // close any that are already up
+
       self.showSortOpts = true;
       self.showModalBkgrnd = true;
     };

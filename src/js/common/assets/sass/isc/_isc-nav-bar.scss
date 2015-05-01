@@ -20,6 +20,11 @@
     max-height: $app-top-nav-height-tablet;
   }
 
+  @media #{$phablet} {
+    height: $app-top-nav-height-tablet;
+    max-height: $app-top-nav-height-tablet;
+  }
+
   @media #{$phone} {
     height: $app-top-nav-height-phone;
     max-height: $app-top-nav-height-phone;
@@ -42,7 +47,7 @@
     height: $app-top-nav-height-desktop;
   }
 
-  @media #{$tablet} {
+  @media #{$tab-phab} {
     height: $app-top-nav-height-tablet;
   }
 
@@ -50,42 +55,46 @@
     height: $app-top-nav-height-phone;
   }
 
+  @include flexbox-align-items( stretch );
+
   .left{
     @include  flex();
+    @include flex-type( 1 );
+    @include flexbox-align-items( center );
     @include flex-justify-content( flex-start );
-    margin-right: 0;
+    order: 1;
 
     @media #{$tab-plus} {
-      @include  isc-nav-section-flex( 1, 3 );
       margin-left: $isc-gutter;
     }
 
     @media #{$phab-or-less} {
-      @include  isc-nav-section-flex( 1, 1 );
       margin-left: $isc-gutter-sm;
     }
   }
 
   .right{
-    @include  flex();
     @include flex-justify-content( flex-end );
+
     margin-left: 0;
 
+    @include  flex();
+    @include flex-type( 4 );
+    @include flexbox-align-items( center );
+    @include flex-justify-content( flex-end );
+    order: 2;
+
+    @media #{$desktop} {
+      @include flex-type( 1 );
+    }
+
     @media #{$tab-plus} {
-      @include  isc-nav-section-flex( 1, 5 );
       margin-right: $isc-gutter;
     }
 
-    @media #{$phablet} {
-      @include  isc-nav-section-flex( 1, 2 );
+    @media #{$phab-or-less} {
       margin-right: $isc-gutter-sm;
     }
-
-    @media #{$phone} {
-      @include  isc-nav-section-flex( 1, 2 );
-      margin-right: 0;
-    }
-
   }
 }
 
@@ -106,15 +115,15 @@
 
 // container for header
 .isc-nav-item{
-  clear: both;
   @include  flex();
-  align-self: center;
-  margin: 0 !important;
+  @include flexbox-align-items( center );
+
+  margin: 0;
   min-height: 18px;
-  @include max-width-content;
 
   &.right{
     padding-left: $isc-nav-item-spacing;
+    margin-right: 15px;
   }
 
   &.left{
@@ -122,33 +131,7 @@
   }
 }
 
-// container for the app name and divider (desktop)
-.isc-app-name-container{
-  margin-top: -10px;
-  padding-left: 7px;
-  padding-top: 0px;
-  margin-left: 0 !important;
-  display: inline-block;
-  vertical-align: middle;
-}
 
-.isc-app-name{
-  font-size: 18px;
-  color: #f5f5f5;
-  font-weight: bolder;
-  padding-top: 3px;
-  white-space: nowrap;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.isc-app-name-divider{
-  padding-right: 10px;
-  font-size: 30px;
-  color: #f5f5f5;
-  font-weight: 100;
-  opacity: .5;
-}
 
 .isc-tabpanel{
   position: absolute;
@@ -174,86 +157,130 @@
   }
 }
 
-// vertical line that spans the height of the header
-.isc-section-divider{
-  border-right: 1px solid $white;
-  width: 10px;
-  max-width: 2px;
-
-  @media #{$desktop} {
-    height: $app-top-nav-height-desktop;
-    max-height: $app-top-nav-height-desktop;
-  }
-
-  @media #{$tablet} {
-    height: $app-header-height-tablet;
-    max-height: $app-header-height-tablet;
-  }
-
-  @media #{$phone} {
-    height: $app-header-height-phone;
-    max-height: $app-header-height-phone;
-  }
-}
-
-// hamburger button
-.isc-hamburger{
-  @extend .isc-image-button;
-  max-width: 20px;
-}
-
-// login button
-.isc-login{
-  @extend .isc-image-button;
-  max-width: 70px;
-}
-
-// info button for phone
-.isc-info-btn-phone{
-  margin-left: 10px !important;
-  margin-right: 5px !important;
-  max-width: 20px;
-}
-
 // header logo
 .isc-logo {
-  font: 0/0 a !important;
-  color: transparent !important;
-  text-shadow: none !important;
-  background-color: transparent !important;
-  border: 0 !important;
-  width: auto;
-
+  background-color: transparent;
   fill: $logo-color;
 
   @media #{$desktop} {
-    margin-top: -10px;
-    height: $navbar-logo-height;
+    width: 250px;
+    //border: 1px solid #ff87f3;
   }
 
   @media #{$tablet} {
-    height: $navbar-logo-height-sm;
+    width: 180px;
+    //border: 1px solid red;
   }
 
-  @media #{$phone}  {
-    height: $navbar-logo-height-sm;
+  @media #{$phablet} {
+    width: 180px;
+    //border: 1px solid green;
   }
+}
 
-  &:hover,
-  &:focus {
-    text-decoration: none;
-  }
-
-  > img {
-    display: inline-block;
-  }
+.isc-logo-sidenav{
+  background-color: transparent;
+  fill: $logo-color;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .logo-svg{
-  width: 250px;
   fill: $logo-color;
-  border: 1px solid transparent;
-  margin-top: 7px;
+  width: 100%;
+
+  @media #{$desktop} {
+    margin-top: -10px;
+  }
+}
+
+// container for the app name and divider (desktop)
+.isc-app-name-container{
+  @include flex;
+  @include flex-direction(row);
+  @include flexbox-align-items( center );
+  @include flex-justify-content( flex-end );
+
+  min-height: $app-header-height-tablet / 2;
+
+  @media #{$desktop} {
+    margin-top: -5px;
+  }
+
+  @media #{$tab-phab} {
+    margin-top: 2px;
+  }
+}
+
+.isc-app-name-divider{
+  border-right: 3px solid white;
+  min-width: 1px;
+
+  @media #{$desktop} {
+    margin-left: 10px;
+    margin-right: 10px;
+    min-height: $app-top-nav-height-desktop / 3;
+  }
+
+  @media #{$tab-phab} {
+    margin-left: 20px;
+    margin-right: 10px;
+    min-height: $app-header-height-tablet / 2.5;
+  }
+}
+
+.isc-hamburger-wrapper{
+  @include box-sizing( border-box );
+}
+
+.isc-help-button-wrapper{
+  @include box-sizing( border-box );
+  border-left: 2px solid white;
+  padding-top: 6px;
+  padding-left: 3px;
+
+  max-width: 50px;
+
+  @media #{$desktop} {
+    min-height: $app-top-nav-height-desktop;
+    margin-right: -$isc-gutter;
+  }
+
+  @media #{$tab-phab} {
+    min-height: $app-header-height-tablet;
+    margin-right: -$isc-gutter-sm;
+  }
+
+  @media #{$phone} {
+    min-height: $app-header-height-phone;
+    margin-right: -$isc-gutter-sm;
+  }
+}
+
+
+// name of the app that appears next to the logo
+.isc-app-name{
+  margin: 0;
+  padding: 0;
+  color: #f5f5f5;
+  font-weight: bolder;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  @media #{$desktop} {
+    margin-top: 5px;
+    font-size: 22px;
+  }
+
+  @media #{$tablet} {
+    font-size: 14px;
+  }
+
+  @media #{$phablet} {
+    font-size: 14px;
+  }
 }
 
 
@@ -266,9 +293,11 @@
 
 // page title that appears in the header
 .isc-section-title{
-  @extend .isc-nav-text;
   font-size: $nav-section-title-size;
+  color: $white;
   white-space: nowrap;
+  padding: 0 0 0 0;
+  margin: 0 20px 0 0;
 }
 
 // labels that appear in the header
@@ -276,12 +305,23 @@
   @extend .isc-nav-text;
   letter-spacing: 0;
   max-width: 50px;
-  padding-left:  $isc-nav-item-spacing/2;
-  padding-right:  $isc-nav-item-spacing/2;
+  text-align: right;
+  margin-left: $isc-nav-item-spacing;
+  margin-right: $isc-nav-item-spacing;
   text-transform: uppercase;
 }
 
+// login button
+.isc-login{
+  @extend .isc-image-button;
+  max-width: 70px;
+}
 
+// info button for phone
+.isc-info-btn-phone{
+  @extend .isc-image-button;
+  max-width: 20px;
+}
 
 
 

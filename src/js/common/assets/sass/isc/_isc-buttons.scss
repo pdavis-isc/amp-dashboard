@@ -31,6 +31,7 @@
 
   min-width: $isc-button-height;
   min-height: $isc-button-height;
+  max-height: $isc-button-height;
 
   // Disabled state
   &:disabled,
@@ -55,15 +56,25 @@
   @extend .isc-btn;
   color: $white;
   background: $button-primary;
-  border:1px solid darken( $button-primary, 20 );
+  border:1px solid darken( $button-primary, 10 );
 
   &:hover{
     background: darken( $button-primary, 10 );
     border:1px solid darken( $button-primary, 20 );
+
+    &:disabled{
+      background: $button-primary-disabled;
+      color: $brand-primary;
+    }
   }
 
   &:active{
     color:$white;
+  }
+
+  &:disabled{
+    background: $button-primary-disabled;
+    color: $brand-primary;
   }
 }
 
@@ -71,7 +82,7 @@
   @extend .isc-btn;
   color: $white;
   background: $brand-danger;
-  border:1px solid darken( $brand-danger, 20 );
+  border:1px solid darken( $brand-danger, 10 );
 
   &:hover{
     background: darken( $brand-danger, 10 );
@@ -87,17 +98,27 @@
   @extend .isc-btn;
   color:darken( $brand-secondary, 60 );
   background: $brand-secondary;
-  border:1px solid darken( $brand-secondary, 20 );
+  border:1px solid darken( $brand-secondary, 10 );
 
   &:hover{
     color:darken( $brand-secondary, 70 );
     background: darken( $brand-secondary, 10 );
     border:1px solid darken( $app-border-color, 30 );
+
+    &:disabled{
+      background: lighten( $brand-secondary, 20 );
+    }
   }
 
   &:active{
     color:$white;
   }
+
+  &:disabled{
+    background: lighten( $brand-secondary, 20 );
+  }
+
+
 
   svg{
     padding-left: 5px;
@@ -137,6 +158,51 @@
   left: 0px;
   right: -20px;
   content: " \F107"; //&#xf107 unicode for fa-angle-down
+}
+
+.isc-navbar-icon{
+  @extend .isc-btn;
+
+  margin: 0;
+
+  max-width: 35px;
+  height: 35px;
+
+  background: none;
+  border: none;
+
+  svg{
+    fill: $white;
+
+    &:hover{
+      fill: $white-smoke;
+    }
+  }
+}
+
+.isc-hamburger-icon{
+  @extend .isc-navbar-icon;
+  padding: 6px 0 0 0;
+  margin-right: 15px;
+
+  svg{
+    width: 35px;
+    height: 35px;
+    margin-left: -10px;
+  }
+}
+
+.isc-question-icon{
+  @extend .isc-navbar-icon;
+  padding: 4px 0 0 10px;
+  min-width: 35px;
+  max-width: 35px;
+
+  svg{
+    width: 35px;
+    height: 35px;
+    margin-left: -12px;
+  }
 }
 
 // icon only search
@@ -244,9 +310,6 @@ a.isc-image-button {
   border: 1px solid transparent;
   z-index: 1000;
 
-  .isc-new-message-icon{
-    margin-right: 5px;
-  }
   button{
     margin-right: 10px
   }

@@ -38,14 +38,6 @@
 
   @media #{$phone} {
 
-    th{
-      font-size: $table-th-size * .75;
-    }
-
-    td{
-      font-size: $table-td-size * .75;
-    }
-
     /* Force table to not be like tables anymore */
     table, thead, tbody, th, td, tr {
       display: block;

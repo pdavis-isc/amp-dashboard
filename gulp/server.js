@@ -22,6 +22,7 @@
      browserSync.instance = browserSync.init(
        files,
        { startPath: '/index.html',
+         port: 57781,
          server: {
            baseDir: baseDir,
            middleware: middleware,

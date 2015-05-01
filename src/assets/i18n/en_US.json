@@ -120,7 +120,7 @@
 
   "ISC_HOME_TAB": "Home",
   "ISC_ALL_SENSORS_TAB": "All Sensors",
-
+  "ISC_ALL_SENSORS_SUBTITLE": "Yup, every last one of 'em",
   "ISC_LOGOUT_BTN": "Log Out",
   "ISC_LOGIN_BTN": "Log In",
   "ISC_LOGGED_IN_GREETING":  "Welcome, {{userName}}",

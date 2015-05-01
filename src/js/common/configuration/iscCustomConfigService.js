@@ -74,8 +74,7 @@
       var url = 'assets/configuration/configFile.json';
 
       if( config ){
-        //$log.debug( '...exists' );
-        //$log.debug( '...exists ' + JSON.stringify( config.baseUrl ) );
+        //$log.debug( '...exists', config );
         deferred.resolve( config );
       }
       else{

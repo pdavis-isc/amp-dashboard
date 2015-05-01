@@ -10,9 +10,12 @@
 
 // Please use config.js to override these selectively:
   var config = {
-    dest: 'www',
+    //dest: 'www',
+    //dest: 'C:/InterSystems/Cache1/CSP/sys/op/amp',
+    dest: 'http://localhost:57782/csp /sys/op/amp',
     cordova: true,
-    minify_images: true,
+    //minify_images: true,
+    minify_images: false,
 
     unit_test_dir: 'test/karma.conf.js',
 
@@ -215,7 +218,6 @@
       .pipe($.size());
   });
 
-
   /*====================================================================
    =            Compile and minify js generating source maps            =
    ====================================================================*/
@@ -226,7 +228,7 @@
     streamqueue({ objectMode: true },
       gulp.src(config.vendor.js),
       gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
-      gulp.src(['src/templates/desktop/**/*.html']).pipe(templateCache({ module: 'iscHsCommunityAngular' }))
+      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'iscHsCommunityAngular' }))
     )
       .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
@@ -267,24 +269,27 @@
     gulp.src(['src/index.html'])
       .pipe( replace( '<!-- inject:js -->', inject.join('\n') ))
       .pipe(gulp.dest(config.dest));
-  });
 
-  /*=================================================
-   =            Copy vendor css files to dest              =
-   =================================================*/
-
-  gulp.task('inject:css', function() {
-    var inject = ['<link rel="stylesheet" href="css/bootstrap.min.css">'];
-
-    gulp.src(['src/index.html'])
-      .pipe( replace( '<!-- inject:css -->', inject.join('\n') ))
+    gulp.src(['config.xml'])
       .pipe(gulp.dest(config.dest));
   });
 
-  gulp.task('css', function(done) {
-    seq('vendor:css', 'inject:css', done);
-  });
+  /*=================================================
+   =            create zip file for build           =
+   =================================================
 
+  gulp.task('add-zip', function() {
+    var inject = [];
+
+    if (config.cordova) {
+      inject.push('<script src="cordova.js"></script>');
+    }
+
+    gulp.src(['www/*'])
+      .pipe( zip( 'archive.zip' ))
+      .pipe(gulp.dest('dist'));
+
+  });
 
   /*======================================
    =                BUILD                =
@@ -292,7 +297,7 @@
 
   gulp.task('build', function(done) {
     var tasks = ['html', 'fonts', 'images', 'js', 'assets', 'sass'];
-    seq('clean', tasks, done);
+    seq('clean', tasks,  done);
   });
 
   gulp.task('build:phonegap', function(done) {

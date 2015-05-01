@@ -1,4 +1,4 @@
-isc-hscommunity-angular
+amp-dashboard
 ======================
 
 Development Repository for HealthShare Community AngularJS UI
@@ -14,7 +14,7 @@ Installation
 -----------------------------------------------------
 
 To install, clone the repository, then in your terminal window, run: 
-   cd isc-hscommunity-angular
+   cd amp-dashboard
    npm install
    bower install
    gulp build

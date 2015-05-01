@@ -25,7 +25,7 @@
         onToggle: '&'
       },
       link: link,
-      templateUrl: 'shared/svg/isc-radio.html'
+      templateUrl: 'common/svg/isc-radio.html'
     };
 
     return directive;
@@ -45,6 +45,7 @@
       }
 
       scope.toggle = function(){
+        //$log.debug( 'iscRadio.toggle' );
         scope.selected = !scope.selected;
         scope.onToggle( {selected: scope.selected} );
 

@@ -44,6 +44,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git:/github.com/intersystems/isc-hscommunity-angular.git"
+    "url": "git:/github.com/intersystems/amp-dashboard.git"
   }
 }

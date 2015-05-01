@@ -1,5 +1,7 @@
 
-
+// -----------
+// base form
+// -----------
 
 .isc-form{
   @include  flex();
@@ -15,17 +17,64 @@
   @media #{$phab-or-less}{
     padding: 10px 10px;
   }
-
-  border: 1px solid $app-border-color;
 }
+
+// -----------
+// login form
+// -----------
+
+.isc-login-form-wrapper{
+  margin-top: -$isc-gutter-sm;
+  margin-left: -$isc-gutter-sm;
+  margin-bottom: 0;
+  //border: 1px solid red;
+
+  padding: $isc-gutter-sm;
+  background: url( ../assets/images/demo/home/login-bkgrnd.jpg );
+
+  @media #{$phone} {
+    margin-right: -$isc-gutter-sm;
+  }
+
+  @media #{$tab-phab} {
+    position: absolute;
+    margin-right: 0;
+    background: none;
+    left: 20px;
+    width: 44%;
+    height: 243px !important;
+  }
+
+  @media #{$tablet} {
+    top: 265px;
+  }
+
+  @media #{$phablet} {
+    top: 215px;
+  }
+}
+
+.isc-login-form-item-label{
+  @extend .isc-form-item-label;
+  color: $white !important;
+  margin: 0px;
+  min-height: 20px !important;
+  max-height: 20px !important;
+}
+
+// ----------------------
+// form groups
+// ----------------------
 
 // container for label and control
 .isc-form-group{
-  @include  flex();
-  @include  flex-type( 1 );
-  @include  flex-justify-content( flex-start );
+  @include box-sizing( border-box );
+  @include flex();
+  @include flex-type( 1 );
+  @include flex-justify-content( flex-start );
+  @include flexbox-align-items( center );
 
-  border: 1px solid transparent;
+  //border: 1px solid red;
   margin: 0px;
   padding: 5px 0 5px 0;
 
@@ -52,6 +101,7 @@
   @media #{$phone} {
     @include  flex-direction( column );
     @include  flex-box-align( stretch );
+    margin: 1px;
   }
 
   @media #{$phab-plus} {
@@ -70,37 +120,36 @@
 
   @media #{$phab-plus}{
     @include  flex-direction( column );
-    padding: 10px 0 10px 0;
     @include  flex-box-align( stretch );
+    padding: 10px 0 10px 0;
   }
 
   .isc-form-item-label{
     justify-content: flex-start;
     text-align: left;
   }
-
-
 }
 
 // label for form items
 .isc-form-item-label{
   @include  flex();
   @include  flex-type( 1 );
-  @include max-width-content;
+
   min-width: 12%;
 
   color: $text-color;
   font-weight: 600;
   font-size: $body-font-size;
 
-  margin: 0 !important;
-  min-height: $form-input-height;
+  margin: 0;
+  padding: 0;
+  //min-height: $form-input-height;
 
   text-wrap: none;
   white-space:nowrap;
   border: 1px solid transparent;
 
-  padding-top: $body-font-size/3;
+  //padding-top: $body-font-size/3;
   padding-right: 10px;
 
   @media #{$phab-plus} {
@@ -136,6 +185,11 @@
   height: 15px;
   cursor: default;
   cursor: pointer;
+
+  @media #{$phab-or-less}{
+    width: 25px;
+    height: 25px;
+  }
 
   .isc-check-mark,
   .isc-checkbox-outline{

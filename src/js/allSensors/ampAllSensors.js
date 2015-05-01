@@ -15,12 +15,12 @@
       $stateProvider
         .state('index.allSensors', {
           url: 'allSensors',
-          templateUrl: 'ampAllSensors/ampAllSensors.html',
+          templateUrl: 'allSensors/ampAllSensors.html',
           controller: 'ampAllSensorsController as asCtrl',
 
           resolve: {
             loadConfig: function(  $log, iscCustomConfigService ){
-              //$log.debug( 'ampAllSensors.loadConfig');
+              $log.debug( 'ampAllSensors.loadConfig');
               iscCustomConfigService.loadConfig();
             },
 
@@ -30,13 +30,23 @@
               return true;
             },
 
-            data: function( ampAllSensorsApi ){
+            data: function(loadSecondaryNav, $log, ampAllSensorsApi) {
               return ampAllSensorsApi.get();
             },
 
-            model: function( data, ampAllSensorsModel ){
-              ampAllSensorsModel.setData( data );
+            model: function($log, data, ampAllSensorsModel) {
+              ampAllSensorsModel.setMyData(data);
+              return true;
             }
+
+            //sensorData: function($log, $q, ampAllSensorsModel, ampAllSensorsApi) {
+            //  var sensorArray = [];
+            //  ampAllSensorsModel.getMyData().forEach(function (param){
+            //    sensorsArray.push(ampAllSensorsApi.get(param))
+            //  });
+            //  return $q.all(sensorArray);
+            //}
+
           }
         });
 

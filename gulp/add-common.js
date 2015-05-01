@@ -14,8 +14,8 @@
    ===============================*/
 
   var gulp        = require('gulp'),
-    seq         = require('run-sequence'),
-    del         = require('del');
+      seq         = require('run-sequence'),
+      del         = require('del');
 
 
   /*==============================

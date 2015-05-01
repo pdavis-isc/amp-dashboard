@@ -11,13 +11,12 @@
 }
 
 .isc-secondary-nav-container {
-  padding: 10px 10px;
+  padding: 0 0;
+  margin: 0 -1;
   width: 100%;
   height: 100%;
 
   hr{
-    margin-left: -10px;
-    margin-right: -10px;
     height: 1px;
     border: none;
     color: $app-border-color;
@@ -26,12 +25,12 @@
 
   h1{
     padding-top: 15px;
+    margin: 0 0 0 10px;
     font-size: 13px;
     text-transform: uppercase;
     color: $brand-primary-dark;
     font-weight: 900;
     letter-spacing: .5px;
-
     height: 100%;
     width: 100%;
   }
@@ -64,7 +63,7 @@
   margin-left: auto !important;
   margin-right: auto !important;
   background-color: $brand-secondary;
-  border: 1px solid darken($brand-secondary, 20 );
+  border: 1px solid $app-border-color;
 
   &:hover,
   &:focus {
@@ -225,6 +224,7 @@ a.isc-secondary-nav-item {
   padding: 0px;
 }
 
+
 .secondary-nav-mobile-container {
   min-height: 50%;
   height: 100%;
@@ -240,35 +240,57 @@ a.isc-secondary-nav-item {
 }
 
 
-.isc-secondary-nav-mobile-dropdown{
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+// nav dropdown for mobile pages
+.isc-secondary-nav-mobile-dropdown-wrapper{
+  width: 100%;
+//  border: 1px solid blueviolet;
+
 }
 
-.isc-secondary-nav-link {
-//  position:relative;
-  display: inline-block;
+.isc-secondary-nav-mobile-dropdown{
+  @include box-sizing( border-box );
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+
   cursor: default;
   cursor: pointer;
-  color: $brand-primary-dark;
-  white-space: nowrap;
-  width: 50px;
-  font-size: 16px;
+//  border: 2px solid green;
 
-  &:hover{
-    color: darken( $brand-primary-dark, 10 );
-  }
-
-  &:after{
+  &:before{
+    //border: 2px solid $brand-page-title-color;
     position:relative;
     display: inline-block;
     font-family: FontAwesome;
-    font-size: 20px;
-    top: 2px;
+    color: $brand-page-title-color;
+    font-size: 30px;
+    font-weight: 400;
+    top: 3px;
     left: 0px;
-    right: -20px;
+    right: -10px;
     content: " \F107"; //&#xf107 unicode for fa-angle-down
+  }
+
+}
+
+.isc-secondary-nav-link {
+  display: inline-block;
+//  white-space: nowrap;
+//  overflow: hidden;
+//  text-overflow: ellipsis;
+//  border: 1px solid red;
+  max-width: 90%;
+  @include box-sizing( border-box );
+
+  cursor: default;
+  cursor: pointer;
+  color: $brand-page-title-color;
+
+  font-size: 24px;
+  font-weight: 400;
+
+  &:hover{
+    color: darken( $brand-primary-dark, 10 );
   }
 }
 

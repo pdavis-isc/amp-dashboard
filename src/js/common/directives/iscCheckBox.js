@@ -25,7 +25,7 @@
         onToggle: '&'
       },
       link: link,
-      templateUrl: 'shared/svg/isc-checkbox.html'
+      templateUrl: 'common/svg/isc-checkbox.html'
     };
 
     return directive;

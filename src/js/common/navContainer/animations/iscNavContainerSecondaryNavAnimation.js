@@ -49,7 +49,7 @@
         // when its inside the page
         var xPos = iscAnimationService.isPhone() ? -offsetX : iscAnimationService.getElementXPos( width, offsetX );
         var yPos = -height - 50; // -50 ensures its offstage
-        var yPosEnd = iscAnimationService.isPhone() ? -offsetY : iscAnimationService.getElementYPos( height, offsetY );
+        var yPosEnd = iscAnimationService.isPhone() ? -offsetY + 20 : iscAnimationService.getElementYPos( height, offsetY );
 
         //$log.debug( '...element.height()',element.height() );
         //$log.debug( '...height',height );
