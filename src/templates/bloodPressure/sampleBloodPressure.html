@@ -1,0 +1,37 @@
+<div class="isc-content">
+    <div class="isc-page">
+        <div>
+            Product: <select ng-options="p.name for p in product_choices" ng-model="isc_product">
+        </select>
+        </div>
+        <div>
+            Kit: <input id="1it_input" ng-model="kit"> val:{{kit}}
+        </div>
+
+        <div>
+            List of Perforce folders to sync: <input id="syncList_input" autocomplete ng-model="sync_list" autofocus>
+        </div>
+
+        <div>
+            List of machines: <input id="machine_input" autocomplete ng-model="machine_to_submit" ng-submit="submitMachine()">
+            <div ng-repeat = "machine in machines">
+                <input type="checkbox" ng-model="machine.isChecked">{{machine.machineName}}
+            </div>
+        </div>
+        <div>
+            Instance name: <input id="instance_input" ng-model="instance">
+        </div>
+        <div>
+            <p>Comments:</p>
+            <textarea name="comments_input" rows="10" cols="30">{{comments}}</textarea>
+        </div>
+
+        <div>
+            <button type="button" onclick="alert('Saved this reqeust!')">Save</button>
+            <button type="button" ng-click="mySubmit()">Submit</button>
+        </div>
+        <div>
+            {{returnJSON}}
+        </div>
+    </div>
+</div>

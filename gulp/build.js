@@ -10,12 +10,9 @@
 
 // Please use config.js to override these selectively:
   var config = {
-    //dest: 'www',
-    //dest: 'C:/InterSystems/Cache1/CSP/sys/op/amp',
-    dest: 'http://localhost:57782/csp /sys/op/amp',
+    dest: 'www',
     cordova: true,
-    //minify_images: true,
-    minify_images: false,
+    minify_images: true,
 
     unit_test_dir: 'test/karma.conf.js',
 
@@ -30,6 +27,7 @@
 
         './bower_components/angular-ui-calendar/src/calendar.js',
         './bower_components/fullcalendar/fullcalendar.js',
+        './bower_components/angular-utils-pagination/dirPagination.js',
 
         './bower_components/angular-ui-router/release/angular-ui-router.js',
         './bower_components/angular-animate/angular-animate.js',
@@ -178,7 +176,7 @@
    =====================================*/
 
   gulp.task('images', function () {
-    var stream = gulp.src(['./src/assets/images/**/*', './src/js/common/assets/images/**/*', '.src/assets/plugins/**/*.{jpg,png}']);
+    var stream = gulp.src(['./src/assets/images/**/*.{jpg,png,gif}', './src/js/common/assets/images/**/*.{jpg,png,gif}', '.src/assets/plugins/**/*.{jpg,png,gif}']);
 
     if (config.minify_images) {
       stream = stream.pipe(imagemin({
@@ -210,7 +208,7 @@
           screens: ['0px']
         }
       }))
-      //.pipe(cssmin())
+      .pipe(cssmin())
       .pipe(gulp.dest('.tmp-css'))
       .pipe(concat('app.css'))
       .pipe(rename({basename: "main", suffix: '.min'}))
@@ -228,32 +226,17 @@
     streamqueue({ objectMode: true },
       gulp.src(config.vendor.js),
       gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
-      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'iscHsCommunityAngular' }))
+      gulp.src(['src/templates/**/*.html']).pipe(templateCache({ module: 'iscSampleApp' }))
     )
       .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
       .pipe(ngAnnotate())
-      //.pipe(uglify())
+     // .pipe(uglify())
       .pipe(rename({suffix: '.min'}))
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(path.join(config.dest, 'js')));
   });
 
-
-  gulp.task('js:phonegap', function() {
-    streamqueue({ objectMode: true },
-      gulp.src(config.vendor.js),
-      gulp.src('./src/js/**/*.js').pipe(ngFilesort()),
-      gulp.src(['src/templates/phonegap/**/*.html']).pipe(templateCache({ module: 'iscHsCommunityAngular' }))
-    )
-      .pipe(sourcemaps.init())
-      .pipe(concat('app.js'))
-      .pipe(ngAnnotate())
-      //.pipe(uglify())
-      .pipe(rename({suffix: '.min'}))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(path.join(config.dest, 'js')));
-  });
 
   /*=================================================
    =            Copy html files to dest              =
@@ -274,22 +257,6 @@
       .pipe(gulp.dest(config.dest));
   });
 
-  /*=================================================
-   =            create zip file for build           =
-   =================================================
-
-  gulp.task('add-zip', function() {
-    var inject = [];
-
-    if (config.cordova) {
-      inject.push('<script src="cordova.js"></script>');
-    }
-
-    gulp.src(['www/*'])
-      .pipe( zip( 'archive.zip' ))
-      .pipe(gulp.dest('dist'));
-
-  });
 
   /*======================================
    =                BUILD                =
@@ -300,9 +267,5 @@
     seq('clean', tasks,  done);
   });
 
-  gulp.task('build:phonegap', function(done) {
-    var tasks = ['html', 'jshint', 'fonts', 'images', 'js:phonegap', 'assets', 'sass'];
-    seq('clean', tasks,  done);
-  });
 
 })();

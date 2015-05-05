@@ -1,76 +1,32 @@
-<style>
-  .green {
-    width: 18px;
-    height: 18px;
-    background: green;
-    -moz-border-radius: 9px;
-    -webkit-border-radius: 9px;
-    border-radius: 9px;
-  }
-  .yellow {
-    width: 0;
-    height: 0;
-    border-left: 9px solid transparent;
-    border-right: 9px solid transparent;
-    border-top: 18px solid #ffd801;
-  }
-  .black {
-    width: 18px;
-    height: 18px;
-    background: black;
-  }
-
-  .red {
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-bottom-color: red;
-    position: relative;
-    top: -10px;
-  }
-  .red:after {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 10px;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-top-color: red;
-  }
-</style>
 
 <div class="isc-content">
-  <div class="isc-page">
+    <div class="isc-page">
 
-    <h1>{{ 'ISC_ALL_SENSORS_SUBTITLE' | translate }}</h1>
+        <!--<h1>{{ 'ISC_ALL_SENSORS_SUBTITLE' | translate }}</h1>-->
 
-    <!--<h2>-->
-      <!--My initials are {{asCtrl.myData}}-->
-    <!--</h2>-->
-    <table class="results">
-      <tr>
-        <th>Sensor</th>
-        <th>Item</th>
-        <th>State</th>
-        <th>Value</th>
-        <th>History</th>
-        <th>Maximum</th>
-        <th>Mean</th>
-        <th>Std. Deviation</th>
-      </tr>
-      <tr ng-repeat="sensor in sensors">
-        <td>{{sensor.Sensor}}</td>
-        <td>{{sensor.SensorItem}}</td>
-        <td><div class={{sensor.State==2?"red":sensorState==1?"yellow":"green"}}></div></td>
-        <td>{{sensor.Value}}</td>
-        <td>{{sensor.Trend}}</td>
-        <td>{{sensor.Maximum}}</td>
-        <td>{{sensor.Mean}}</td>
-        <td>{{sensor.StdDeviation}}</td>
-      </tr>
-    </table>
-  </div>
+        <table class="compact results">
+            <tr>
+                <th>Sensor</th>
+                <th>Item</th>
+                <th>State</th>
+                <th>Value</th>
+                <th>History</th>
+                <th>Maximum</th>
+                <th>Mean</th>
+                <th>Std. Deviation</th>
+            </tr>
+            <tr ng-repeat="sensor in asCtrl.sensors">
+                <td>{{sensor.Sensor}}</td>
+                <td>{{sensor.SensorItem}}</td>
+                <td><div class={{sensor.State==2?"red":sensorState==1?"yellow":"green"}}></div></td>
+                <td>{{sensor.Value}}</td>
+                <td>{{sensor.Trend}}</td>
+                <td>{{sensor.Maximum}}</td>
+                <td>{{sensor.Mean}}</td>
+                <td>{{sensor.StdDeviation}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 
