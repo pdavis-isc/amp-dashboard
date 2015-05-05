@@ -38,7 +38,7 @@
                 hour -= 1;
             }
             //var responsePromise = $http.post("http://localhost:57782/csp/sys/op/api/v1/Dashboard/sensorArray/Hour/All/Now/" + hour);
-            var responsePromise = $http.post("../../../../api/v1/Dashboard/sensorArray/Hour/All/Now/" + hour);
+            var responsePromise = $http.post("../../../api/v1/Dashboard/sensorArray/Hour/All/Now/" + hour);
 
             responsePromise.success(function (data, status, headers, config) {
                 //$scope.sensors = data.sensors;
