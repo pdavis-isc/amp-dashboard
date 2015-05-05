@@ -22,7 +22,6 @@
      browserSync.instance = browserSync.init(
        files,
        { startPath: '/index.html',
-         port: 57781,
          server: {
            baseDir: baseDir,
            middleware: middleware,
@@ -41,14 +40,6 @@
          'www/index.html' ]);
    });
 
-   gulp.task('server:phonegap', ['watch:phonegap'], function () {
-     browserSyncInit(
-       [ 'www' ],
-       [ 'www/assets/**/*',
-         'www/css/*.css',
-         'www/js/*.js',
-         'www/index.html' ]);
-   });
 
    gulp.task('serve:dist', ['build'], function () {
      browserSyncInit('www');
@@ -70,9 +61,7 @@
      seq('build', 'server', done);
    });
 
-   gulp.task('serve:phonegap', function(done) {
-     seq('build:phonegap', 'server:phonegap', done);
-   });
+
 
 
  })();

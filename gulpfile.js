@@ -1,12 +1,9 @@
+'use strict';
+
+var gulp = require('gulp');
 
 require('require-dir')('./gulp');
-var gulp = require('gulp');
-var seq = require('run-sequence');
 
-/*====================================
-=            Default Task            =
-====================================*/
-
-gulp.task('default', function(done){
-  seq('serve:desktop',  done);
+gulp.task('default', ['clean'], function () {
+    gulp.start('build');
 });

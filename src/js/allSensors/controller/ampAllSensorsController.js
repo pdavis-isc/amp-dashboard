@@ -1,32 +1,33 @@
 /**
- * Created by pdavis on 4/14/2015.
+ * Created by pdavis on 5/1/2015.
  */
+
 (function(){
 
-  'use strict';
+    'use strict';
 
-  ampAllSensorsController.$inject = [ '$log', 'ampAllSensorsModel' ];
+    ampAllSensorsController.$inject = [ '$log', 'ampAllSensorsModel' ];
 
-  function ampAllSensorsController( $log, ampAllSensorsModel ){
-    $log.debug( 'ampAllSensorsController LOADED');
+    function ampAllSensorsController( $log, ampAllSensorsModel ){
+        //$log.debug( 'ampAllSensorsController LOADED');
+
+        // ----------------------
+        // vars
+        // ----------------------
+
+        var self = this;
+        self.sensors = ampAllSensorsModel.getMyData().sensorArray;
+        // ----------------------
+        // functions
+        // ----------------------
+
+    } // END CLASS
 
     // ----------------------
-    // vars
+    // inject
     // ----------------------
 
-    var self = this;
-    self.myData = ampAllSensorsModel.getMyData();
-    // ----------------------
-    // functions
-    // ----------------------
-
-  } // END CLASS
-
-  // ----------------------
-  // inject
-  // ----------------------
-
-  angular.module('ampAllSensors')
-    .controller('ampAllSensorsController', ampAllSensorsController );
+    angular.module('ampAllSensors')
+        .controller('ampAllSensorsController', ampAllSensorsController );
 
 })();

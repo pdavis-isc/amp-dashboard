@@ -1,20 +1,21 @@
 {
   "baseUrl": "",
-
   "noLoginRequired": [
-    "index.*"
+    "index",
+    "index.login",
+    "index.home",
+    "index.bloodPressure",
+    "index.allSensors"
   ],
-
   "userRoles": [
+    "guest",
+    "user"
   ],
-
-  "statePermissions": {
-  },
-
+  "statePermissions": {},
   "topTabs": {
-    "index.home": {
-      "state": "index.home",
-      "translationKey": "ISC_HOME_TAB",
+    "index.bloodPressure": {
+      "state": "index.bloodPressure",
+      "translationKey": "SAMPLE_BLOOD_RESULTS",
       "displayOrder": 1,
       "exclude": false
     },
@@ -25,18 +26,12 @@
       "displayOrder": 2,
       "exclude": false
     }
-  },
 
-  "loginButton": {
-    "state": "index.login",
-    "translationKey": "ISC_LOGIN_BTN",
-    "displayOrder": 8,
-    "exclude": false
   },
 
   "logoutButton": {
+    "state": "index.logout",
     "translationKey": "ISC_LOGOUT_BTN",
     "exclude": false
   }
-
 }
